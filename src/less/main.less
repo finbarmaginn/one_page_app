@@ -22,6 +22,7 @@ header {
       padding:0;
       li {
         display: inline-block;
+        list-style-type: none;
         a {
           text-decoration: none;
           padding:5px 10px;
@@ -33,5 +34,8 @@ header {
 section {
   article {
     display: none;
+  }
+  article:nth-child(1) {
+    display: block;
   }
 }
