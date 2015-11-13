@@ -9,7 +9,8 @@ var homeLink = document.getElementById("homeLink"),
     aboutContent = document.getElementById("aboutArticle"),
     contactLink = document.getElementById("contactLink"),
     contactContent = document.getElementById("contactArticle"),
-    articles = document.getElementsByTagName("article");
+    articles = document.getElementsByTagName("article"),
+    linksArray = [homeLink, aboutLink, contactLink];
 
 var App = {
     handleClick: function (event) {
@@ -42,12 +43,8 @@ var App = {
         }
     }
 };
-homeLink.addEventListener("click", function (event) {
-    App.handleClick(event);
-});
-aboutLink.addEventListener("click", function (event) {
-    App.handleClick(event);
-});
-contactLink.addEventListener("click", function (event) {
-    App.handleClick(event);
-});
+for (var i = 0; i<linksArray.length; i++) {
+    linksArray[i].addEventListener("click", function (event) {
+        App.handleClick(event);
+    });
+}
