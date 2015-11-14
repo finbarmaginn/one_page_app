@@ -22,12 +22,16 @@ var App = {
         for (var i = 0 ; i < articles.length ; i++){
             articles[i].style.display = "none";
         }
-        if (thisid == "homeLink") {
-            homeContent.style.display = "block";
-        } else if (thisid == "aboutLink") {
-            aboutContent.style.display = "block";
-        }   else {
-            contactContent.style.display = "block";
+        switch (thisid){
+            case "homeLink":
+                homeContent.style.display = "block";
+                break;
+            case "aboutLink":
+                aboutContent.style.display = "block";
+                break;
+            case "contactLink":
+                contactContent.style.display = "block";
+                break;
         }
     },
     ieDefaults: function (event) {
