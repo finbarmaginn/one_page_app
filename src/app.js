@@ -10,7 +10,11 @@ var homeLink = document.getElementById("homeLink"),
     contactLink = document.getElementById("contactLink"),
     contactContent = document.getElementById("contactArticle"),
     articles = document.getElementsByTagName("article"),
-    linksArray = [homeLink, aboutLink, contactLink];
+    arrayButton = document.getElementById("loadArray"),
+    linksArray = [homeLink, aboutLink, contactLink],
+    arrayList = document.getElementById("arrayList"),
+    arrayItems = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"],
+    textNode;
 
 var App = {
     handleClick: function (event) {
@@ -68,6 +72,14 @@ for (var i = 0; i<linksArray.length; i++) {
         App.handleClick(event);
     });
 }
+arrayButton.addEventListener("click", function() {
+    for (var i = 0; i < arrayItems.length; i++) {
+        var arrayListItem = document.createElement("LI");
+        textNode = document.createTextNode(arrayItems[i]);
+        arrayListItem.appendChild(textNode);
+        arrayList.appendChild(arrayListItem);
+    }
+});
 window.addEventListener("popstate", function(event){
     App.changeHistory(event);
 });
