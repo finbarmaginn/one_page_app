@@ -14,8 +14,10 @@ var homeLink = document.getElementById("homeLink"),
 
 var App = {
     handleClick: function (event) {
-        this.ieDefaults(event);
+        event.preventDefault();
+        this.pushHistory(event);
         this.changeContent(event);
+        event.stopPropagation();
     },
     changeContent: function (event) {
         var thisid = event.target.id;
@@ -34,16 +36,30 @@ var App = {
                 break;
         }
     },
-    ieDefaults: function (event) {
-        if (event.preventDefault) {
-            event.preventDefault();
-        } else {
-            event.returnValue = false;
+    pushHistory: function(event) {
+        var data = event.target.getAttribute('data-name'),
+            url = data + ".html";
+        history.pushState(data, null, url);
+    },
+    changeHistory: function(event) {
+        var loadContent = event.state;
+        for (var i = 0 ; i < articles.length ; i++){
+            articles[i].style.display = "none";
         }
-        if (event.stopPropagation) {
-            event.stopPropagation();
+        if (loadContent == null){
+            homeContent.style.display = "block";
         } else {
-            event.cancelBubble = true;
+            switch (loadContent){
+                case "index":
+                    homeContent.style.display = "block";
+                    break;
+                case "about":
+                    aboutContent.style.display = "block";
+                    break;
+                case "contact":
+                    contactContent.style.display = "block";
+                    break;
+            }
         }
     }
 };
@@ -52,3 +68,6 @@ for (var i = 0; i<linksArray.length; i++) {
         App.handleClick(event);
     });
 }
+window.addEventListener("popstate", function(event){
+    App.changeHistory(event);
+});
