@@ -1,6 +1,10 @@
 /**
  * Created by finba on 13/11/2015.
  */
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 "use strict";
 
 var homeLink = document.getElementById("homeLink"),
@@ -83,3 +87,9 @@ arrayButton.addEventListener("click", function() {
 window.addEventListener("popstate", function(event){
     App.changeHistory(event);
 });
+
+
+ReactDOM.render(
+<p>Hello</p>,
+    document.getElementById('example')
+);
